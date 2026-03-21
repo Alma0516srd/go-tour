@@ -86,7 +86,7 @@ func findUser(rw http.ResponseWriter, r *http.Request) {
 		// as the status code.
 
 		sendResponse(rw, u, http.StatusOK)
-		log.Println("Response ")
+		log.Println("Response ", rw)
 
 		// Log we sent the response with a StatusOk
 
@@ -96,6 +96,7 @@ func findUser(rw http.ResponseWriter, r *http.Request) {
 
 		// Use this struct value for the error response.
 		e := struct{ Error string }{ctx.Err().Error()}
+		print(e)
 
 		// Call the `sendResponse` function provided below to
 		// send the error to the caller. Use `http.StatusRequestTimeout`
