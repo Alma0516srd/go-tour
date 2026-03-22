@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"sync"
 )
@@ -24,4 +25,16 @@ func main() {
 			intChannel <- randValue
 		}()
 	}
+
+	go func() {
+		wg.Wait()
+		close(intChannel)
+	}()
+
+	var nums []int
+	for n := range intChannel {
+		nums = append(nums, n)
+	}
+
+	fmt.Println(nums)
 }
